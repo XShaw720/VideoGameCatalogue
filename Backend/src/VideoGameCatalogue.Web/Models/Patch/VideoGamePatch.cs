@@ -1,5 +1,4 @@
-﻿using HotChocolate;
-using VideoGameCatalogue.Core.Models.Entites;
+﻿using VideoGameCatalogue.Core.Models.Entites;
 using VideoGameCatalogue.Web.Extensions;
 using VideoGameCatalogue.Web.Interfaces;
 

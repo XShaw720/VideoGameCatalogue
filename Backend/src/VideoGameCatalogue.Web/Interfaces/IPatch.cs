@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using VideoGameCatalogue.Core.Models.Entites;
+﻿using VideoGameCatalogue.Core.Models.Entites;
 
 namespace VideoGameCatalogue.Web.Interfaces;
 

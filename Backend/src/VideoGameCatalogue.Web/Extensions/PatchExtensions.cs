@@ -1,8 +1,4 @@
-﻿using HotChocolate;
-using VideoGameCatalogue.Core.Models.Entites;
-using VideoGameCatalogue.Web.Interfaces;
-
-namespace VideoGameCatalogue.Web.Extensions;
+﻿namespace VideoGameCatalogue.Web.Extensions;
 
 public static class PatchExtensions
 {

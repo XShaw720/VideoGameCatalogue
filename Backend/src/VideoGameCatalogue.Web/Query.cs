@@ -1,4 +1,5 @@
-﻿using VideoGameCatalogue.Core;
+﻿using Microsoft.EntityFrameworkCore;
+using VideoGameCatalogue.Core;
 using VideoGameCatalogue.Core.Models.Entites;
 
 namespace VideoGameCatalogue.Web;

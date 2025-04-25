@@ -1,6 +1,5 @@
 ﻿using HotChocolate;
 using HotChocolate.Types;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace VideoGameCatalogue.Core.Models.Entites;
 
