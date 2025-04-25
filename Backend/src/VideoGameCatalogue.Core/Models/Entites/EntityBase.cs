@@ -10,9 +10,9 @@ public abstract class EntityBase
     [GraphQLType(typeof(IdType))]
     public long Id { get; private protected set; }
 
-    public DateTime CreatedAt { get; private set; }
-    public DateTime UpdatedAt { get; private set; }
-    public DateTime? DeletedAt { get; private set; }
+    public DateTime? CreatedAt { get; protected set; }
+    public DateTime? UpdatedAt { get; protected set; }
+    public DateTime? DeletedAt { get; protected set; }
 
     public void OnCreate()
     {
