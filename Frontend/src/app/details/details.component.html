@@ -1,0 +1,12 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" [value]="videoGame().title" (ngModelChange)="updateTitle($event)" class="form-control" id="title" formControlName="title">
+    </div>
+    <div class="form-group">
+      <label for="genre">Genre</label>
+      <input type="text" class="form-control" id="genre" formControlName="genre">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" (click)="onDelete()">Delete</button>
+</form>

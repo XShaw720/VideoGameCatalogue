@@ -1,0 +1,11 @@
+<section>
+    <form>
+        <input type="text" placeholder="Filter" #filter>
+        <button type="button" (click)="filterResults(filter.value)">Search</button>
+    </form>
+</section>
+<section>
+    @for (videoGame of filteredVideoGames; track videoGame){
+        <app-video-game [videoGame]="videoGame"></app-video-game>
+    }
+</section>
