@@ -17,6 +17,8 @@ export class VideoGameService {
           videoGameSet{
               id
               title
+              genre
+              description
           }
         }
       `,
@@ -30,6 +32,8 @@ export class VideoGameService {
           videoGameSet(where: {id: {eq: $id}}){
               id
               title
+              genre
+              description
           }
         }
       `,
@@ -37,26 +41,26 @@ export class VideoGameService {
     }).pipe(map(x => x.data.videoGameSet[0]));
   }
 
-  addVideoGame(title: string, genre: string, description: string){
+  addVideoGame(title: string, genre: string, description: string): Observable<any> {
     const videoGamePatch = {
       title: title,
       genre: genre,
       description
     }
 
-    this.apollo.mutate({
+    return this.apollo.mutate({
       mutation: gql`
-        mutation($entity: VideoGamePatchInput!){
+        mutation($entity: VideoGameInput!){
           addVideoGame(entity: $entity){
             id
           }
         }
       `,
       variables: {entity: videoGamePatch}
-    }).subscribe({error: x => console.error('failed to create videoGame: ' + x)});
+    });
   }
 
-  updateVideoGame(id: number, title: string, genre: string, description: string){
+  updateVideoGame(id: number, title: string, genre: string, description: string): Observable<any> {
     const videoGamePatch = {
       id: id,
       title: title,
@@ -64,7 +68,7 @@ export class VideoGameService {
       description
     }
 
-    this.apollo.mutate({
+    return this.apollo.mutate({
       mutation: gql`
         mutation($entity: VideoGamePatchInput!){
           updateVideoGame(entity: $entity){
@@ -73,17 +77,17 @@ export class VideoGameService {
         }
       `,
       variables: {entity: videoGamePatch}
-    }).subscribe({error: x => console.error('failed to update videoGame: ' + x)});
+    });
   }
 
-  deleteVideoGame(id: number){
-    this.apollo.mutate({
+  deleteVideoGame(id: number): Observable<any> {
+    return this.apollo.mutate({
       mutation: gql`
         mutation($id: Long!){
           deleteVideoGame(id: $id)
         }
       `,
       variables: {id: id}
-    }).subscribe({error: x => console.error('failed to delete videoGame: ' + x)});
+    });
   }
 }

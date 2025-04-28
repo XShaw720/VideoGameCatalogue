@@ -50,20 +50,19 @@ export class DetailsComponent {
         this.form.value.title,
         this.form.value.genre,
         this.form.value.description
-      );
+      ).subscribe(() => this.router.navigate(['/']));
     }
     else{
       this.videoGameService.addVideoGame(
         this.form.value.title,
         this.form.value.genre,
         this.form.value.description
-      );
+      ).subscribe(() => this.router.navigate(['/']));
     }
   }
 
   onDelete(){
-    this.videoGameService.deleteVideoGame(this.videoGameId);
-    this.router.navigate(['/']);
+    this.videoGameService.deleteVideoGame(this.videoGameId).subscribe(() => this.router.navigate(['/']));
   }
 
   ngOnDestroy() {

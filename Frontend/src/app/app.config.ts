@@ -15,6 +15,20 @@ export const appConfig: ApplicationConfig = {
           uri: 'https://localhost:7001/graphql',
         }),
         cache: new InMemoryCache(),
+        defaultOptions: {
+          watchQuery: {
+            fetchPolicy: 'no-cache',
+            errorPolicy: 'ignore',
+          },
+          query: {
+            fetchPolicy: 'no-cache',
+            errorPolicy: 'all',
+          },
+          mutate: {
+            fetchPolicy: 'no-cache',
+            errorPolicy: 'all',
+          }
+        }
       };
     })]
 };
