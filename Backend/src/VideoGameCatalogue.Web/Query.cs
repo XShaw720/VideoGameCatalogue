@@ -9,7 +9,5 @@ public class Query
     [UseProjection]
     [UseFiltering]
     [UseSorting]
-    public IQueryable<VideoGame> VideoGameSet(Context context) {
-        return context.Set<VideoGame>();
-    }
+    public IQueryable<VideoGame> VideoGameSet(Context context) => context.Set<VideoGame>();
 }

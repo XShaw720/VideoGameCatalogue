@@ -9,7 +9,7 @@ import { Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'
 })
@@ -31,6 +31,7 @@ export class DetailsComponent {
     if(this.videoGameId){
       this.videoGameService.getVideoGameById(this.videoGameId).pipe(takeUntil(this.destroy$)).subscribe(videoGame => {
         if(!videoGame){
+          console.warn('Invalid link, video game not found.')
           this.router.navigate(['/']);
         }
         else{
@@ -44,18 +45,20 @@ export class DetailsComponent {
 
   onSubmit(){
     if(this.videoGameId){
-      return this.videoGameService.updateVideoGame(
+      this.videoGameService.updateVideoGame(
         this.videoGameId,
         this.form.value.title,
         this.form.value.genre,
         this.form.value.description
       );
     }
-    this.videoGameService.addVideoGame(
-      this.form.value.title,
-      this.form.value.genre,
-      this.form.value.description
-    );
+    else{
+      this.videoGameService.addVideoGame(
+        this.form.value.title,
+        this.form.value.genre,
+        this.form.value.description
+      );
+    }
   }
 
   onDelete(){
