@@ -1,8 +1,7 @@
 import { Injectable} from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-import { catchError, map, Observable  } from 'rxjs';
-import { VideoGameDto, VideoGameResponse } from './video-game-dto';
-import { VideoGame } from './video-game';
+import { map, Observable  } from 'rxjs';
+import { VideoGame, VideoGameResponse } from './video-game';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +20,7 @@ export class VideoGameService {
           }
         }
       `,
-    }).pipe(map(x => x.data.videoGameSet.map(x => this.videoGameDtoToDomain(x))));
+    }).pipe(map(x => x.data.videoGameSet));
   }
 
   getVideoGameById(id: number): Observable<VideoGame> {
@@ -35,10 +34,16 @@ export class VideoGameService {
         }
       `,
       variables: {id: id}
-    }).pipe(map(x => this.videoGameDtoToDomain(x.data.videoGameSet[0])));
+    }).pipe(map(x => x.data.videoGameSet[0]));
   }
 
-  updateVideoGame(videoGame: VideoGame){
+  updateVideoGame(id: number, title: string, genre: string){
+    const videoGamePatch = {
+      id: id,
+      title: title,
+      genre: genre
+    }
+
     this.apollo.mutate({
       mutation: gql`
         mutation($entity: VideoGamePatchInput!){
@@ -47,7 +52,7 @@ export class VideoGameService {
           }
         }
       `,
-      variables: {entity: videoGame}
+      variables: {entity: videoGamePatch}
     }).subscribe({error: x => console.error('failed to update videoGame: ' + x)});
   }
 
@@ -60,12 +65,5 @@ export class VideoGameService {
       `,
       variables: {id: id}
     }).subscribe({error: x => console.error('failed to delete videoGame: ' + x)});
-  }
-
-  videoGameDtoToDomain(dto: VideoGameDto): VideoGame{
-    return new VideoGame(
-      +dto.id,
-      dto.title
-    );
   }
 }

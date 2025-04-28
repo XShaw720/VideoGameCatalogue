@@ -1,9 +1,9 @@
-export class VideoGame {
-    id: number;
-    title?: string;
-    
-    constructor(id: number, title?: string){
-        this.id = id;
-        this.title = title;
-    }
+export interface VideoGameResponse {
+    videoGameSet: VideoGame[]
+}
+
+export interface VideoGame {
+    id: string,
+    title?: string,
+    genre?: string
 }
