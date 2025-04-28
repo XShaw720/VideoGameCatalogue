@@ -5,5 +5,6 @@ export interface VideoGameResponse {
 export interface VideoGame {
     id: string,
     title?: string,
-    genre?: string
+    genre?: string,
+    description?: string
 }

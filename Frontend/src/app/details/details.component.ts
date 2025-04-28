@@ -21,7 +21,8 @@ export class DetailsComponent {
   videoGameId: number;
   form = new FormGroup({
     title: new FormControl(),
-    genre: new FormControl()
+    genre: new FormControl(),
+    description: new FormControl()
   })
 
   constructor(){
@@ -33,6 +34,7 @@ export class DetailsComponent {
       else{
         this.form.controls['title'].setValue(videoGame.title);
         this.form.controls['genre'].setValue(videoGame.genre);
+        this.form.controls['description'].setValue(videoGame.description);
       }
     });
   }
@@ -41,7 +43,8 @@ export class DetailsComponent {
     this.videoGameService.updateVideoGame(
       this.videoGameId,
       this.form.value.title,
-      this.form.value.genre
+      this.form.value.genre,
+      this.form.value.description
     );
   }
 

@@ -37,11 +37,12 @@ export class VideoGameService {
     }).pipe(map(x => x.data.videoGameSet[0]));
   }
 
-  updateVideoGame(id: number, title: string, genre: string){
+  updateVideoGame(id: number, title: string, genre: string, description: string){
     const videoGamePatch = {
       id: id,
       title: title,
-      genre: genre
+      genre: genre,
+      description
     }
 
     this.apollo.mutate({
