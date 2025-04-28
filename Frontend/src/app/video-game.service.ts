@@ -37,6 +37,25 @@ export class VideoGameService {
     }).pipe(map(x => x.data.videoGameSet[0]));
   }
 
+  addVideoGame(title: string, genre: string, description: string){
+    const videoGamePatch = {
+      title: title,
+      genre: genre,
+      description
+    }
+
+    this.apollo.mutate({
+      mutation: gql`
+        mutation($entity: VideoGamePatchInput!){
+          addVideoGame(entity: $entity){
+            id
+          }
+        }
+      `,
+      variables: {entity: videoGamePatch}
+    }).subscribe({error: x => console.error('failed to create videoGame: ' + x)});
+  }
+
   updateVideoGame(id: number, title: string, genre: string, description: string){
     const videoGamePatch = {
       id: id,

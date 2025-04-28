@@ -1,4 +1,5 @@
 import { Component, inject} from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VideoGameService } from '../video-game.service';
@@ -8,7 +9,7 @@ import { Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'
 })
@@ -27,21 +28,30 @@ export class DetailsComponent {
 
   constructor(){
     this.videoGameId = Number(this.route.snapshot.params['id']);
-    this.videoGameService.getVideoGameById(this.videoGameId).pipe(takeUntil(this.destroy$)).subscribe(videoGame => {
-      if(!videoGame){
-        this.router.navigate(['/']);
-      }
-      else{
-        this.form.controls['title'].setValue(videoGame.title);
-        this.form.controls['genre'].setValue(videoGame.genre);
-        this.form.controls['description'].setValue(videoGame.description);
-      }
-    });
+    if(this.videoGameId){
+      this.videoGameService.getVideoGameById(this.videoGameId).pipe(takeUntil(this.destroy$)).subscribe(videoGame => {
+        if(!videoGame){
+          this.router.navigate(['/']);
+        }
+        else{
+          this.form.controls['title'].setValue(videoGame.title);
+          this.form.controls['genre'].setValue(videoGame.genre);
+          this.form.controls['description'].setValue(videoGame.description);
+        }
+      });
+    }
   }
 
   onSubmit(){
-    this.videoGameService.updateVideoGame(
-      this.videoGameId,
+    if(this.videoGameId){
+      return this.videoGameService.updateVideoGame(
+        this.videoGameId,
+        this.form.value.title,
+        this.form.value.genre,
+        this.form.value.description
+      );
+    }
+    this.videoGameService.addVideoGame(
       this.form.value.title,
       this.form.value.genre,
       this.form.value.description

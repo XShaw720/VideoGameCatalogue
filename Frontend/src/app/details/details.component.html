@@ -13,6 +13,11 @@
     </div>
     <div class="my-1">
       <button type="submit" class="btn btn-dark">Submit</button>
-      <button type="submit" class="btn btn-secondary mx-1" (click)="onDelete()">Delete</button>
+      @if(videoGameId) {
+        <button type="button" class="btn btn-secondary mx-1" (click)="onDelete()">Delete</button>
+      }
+      @else {
+        <button routerLink="/" type="button" class="btn btn-secondary mx-1">Cancel</button>
+      }
     </div>
 </form>
