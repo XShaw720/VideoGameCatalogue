@@ -1,0 +1,8 @@
+<div class="card m-1" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{videoGame.title}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">genre{{videoGame.genre}}</h6>
+      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra dui nibh, et laoreet ligula pellentesque et. Cras tincidunt imperdiet dictum. Vivamus sollicitudin quis metus a euismod. {{videoGame.description}}</p>
+      <a [routerLink]="['details', videoGame.id]" class="btn btn-secondary">details</a>
+    </div>
+</div>
