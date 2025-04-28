@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoGameCatalogue.Web", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoGameCatalogue.Core", "src\VideoGameCatalogue.Core\VideoGameCatalogue.Core.csproj", "{8EF689A7-8FFE-4D0A-BAED-EC715BAEBBDA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoGameCatalogue.Web.Tests", "test\VideoGameCatalogue.Web.Tests\VideoGameCatalogue.Web.Tests.csproj", "{6188C5AC-88CA-449E-80CF-8F6A961AD49D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8EF689A7-8FFE-4D0A-BAED-EC715BAEBBDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EF689A7-8FFE-4D0A-BAED-EC715BAEBBDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EF689A7-8FFE-4D0A-BAED-EC715BAEBBDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6188C5AC-88CA-449E-80CF-8F6A961AD49D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6188C5AC-88CA-449E-80CF-8F6A961AD49D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6188C5AC-88CA-449E-80CF-8F6A961AD49D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6188C5AC-88CA-449E-80CF-8F6A961AD49D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
